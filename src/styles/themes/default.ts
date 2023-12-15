@@ -25,4 +25,6 @@ export const defaulTheme = {
 
   '--purple': '#8284fa',
   '--purple-dark': '#5e60ce',
+
+  '--amber': '#fffbeb',
 };

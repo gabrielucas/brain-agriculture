@@ -2,9 +2,21 @@ import { styled } from 'styled-components';
 
 const HeaderContainer = styled.header`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
 
-  margin-bottom: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  border-radius: 8px;
+  background: ${({ theme }) => theme['--green-600']};
+
+  img {
+    height: 2rem;
+    border-radius: 4px;
+    background: ${({ theme }) => theme['--green-700']};
+    padding: 0.25rem;
+  }
 
   nav {
     display: flex;

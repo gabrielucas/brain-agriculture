@@ -1,11 +1,14 @@
 import { FC } from 'react';
-import { HeaderContainer } from './styles';
 import { NavLink } from 'react-router-dom';
+
+import { HeaderContainer } from './styles';
+import Logo from '../../assets/logo.png';
 import { Agriculture, Analytics } from '@mui/icons-material';
 
 export const Header: FC = () => {
   return (
     <HeaderContainer>
+      <img src={Logo} alt="Logomarca da Brain Agriculture" />
       <nav>
         <NavLink to={'/'} title="Fazendas">
           <Agriculture fontSize="large" />
