@@ -26,4 +26,8 @@ export const GlobalStyles = createGlobalStyle`
     button {
       background: none;
     }
+
+    ul, ol {
+      list-style: none;
+    }
 `;

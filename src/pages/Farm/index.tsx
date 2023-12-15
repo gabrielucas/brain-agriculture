@@ -1,9 +1,6 @@
 import { FC } from 'react';
+import { FarmRegistrationForm } from '../../components/FarmRegistrationForm';
 
 export const Farm: FC = () => {
-  return (
-    <div>
-      <h1>farm</h1>
-    </div>
-  );
+  return <FarmRegistrationForm />;
 };

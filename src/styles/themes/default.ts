@@ -7,6 +7,16 @@ export const defaulTheme = {
   '--gray-600': '#1a1a1a',
   '--gray-700': '#0d0d0d',
 
+  '--green-100': '#dcfce7',
+  '--green-200': '#bbf7d0',
+  '--green-300': '#86efac',
+  '--green-400': '#4ade80',
+  '--green-500': '#22c55e',
+  '--green-600': '#16a34a',
+  '--green-700': '#15803d',
+  '--green-800': '#166534',
+  '--green-900': '#14532d',
+
   '--danger': '#e25858',
 
   '--blue': '#4ea8de',
