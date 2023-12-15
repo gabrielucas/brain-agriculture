@@ -5,7 +5,7 @@ import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material';
 import { defaulTheme } from './styles/themes/default';
 import { GlobalStyles } from './styles/global';
 import { Modal } from './components/Modal';
-import { Router } from './components/pages/Router';
+import { Router } from './routes';
 import { ModalProvider } from './components/Modal/context/ModalProvider';
 
 const defaultMuiTheme = createTheme();

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Dashboard } from './Dashboard';
-import { Farm } from './Farm';
-import { DefaultLayout } from '../../layouts';
+import { Dashboard } from '../components/pages/Dashboard';
+import { Farm } from '../components/pages/Farm';
+import { DefaultLayout } from '../layouts';
 
 export const Router: FC = () => {
   return (
