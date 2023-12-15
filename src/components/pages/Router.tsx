@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from './Dashboard';
 import { Farm } from './Farm';
-import { DefaultLayout } from '../layouts';
+import { DefaultLayout } from '../../layouts';
 
 export const Router: FC = () => {
   return (
