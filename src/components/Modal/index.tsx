@@ -1,13 +1,11 @@
 import { FC, useCallback } from 'react';
 
-import { ModalBox, ModalContent, ModalHeader, ModalWrapper } from './styles';
+import { ModalBox, ModalContentBox, ModalHeader, ModalWrapper } from './styles';
 import { Button } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import { useModalContext } from './context/useModalContext';
-import { IModalProps } from './context/types/interfaces';
-
-export const Modal: FC<IModalProps> = ({ children }) => {
-  const { open, closeModal, modalConfig } = useModalContext();
+export const Modal: FC = () => {
+  const { open, closeModal, modalConfig, ModalContent } = useModalContext();
 
   const handleOnClose = useCallback(() => {
     if (modalConfig?.isClosableOverlay) closeModal();
@@ -15,13 +13,13 @@ export const Modal: FC<IModalProps> = ({ children }) => {
 
   return (
     <ModalWrapper open={open} onClose={handleOnClose}>
-      <ModalBox>
+      <ModalBox width={modalConfig?.width} height={modalConfig?.height}>
         <ModalHeader>
           <Button onClick={closeModal}>
             <Close />
           </Button>
         </ModalHeader>
-        <ModalContent>{children}</ModalContent>
+        <ModalContentBox>{ModalContent}</ModalContentBox>
       </ModalBox>
     </ModalWrapper>
   );

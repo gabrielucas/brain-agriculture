@@ -1,20 +1,27 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 
-import { AddNewFarmButton, FarmContainer } from './styles';
+import { FarmContainer } from './styles';
 import { Add } from '@mui/icons-material';
 import { Divider } from '@mui/material';
 import { useModalContext } from '../../Modal/context/useModalContext';
 import { FarmList } from '../../FarmList';
+import { FarmForm } from '../../FarmForm';
+import { Button } from '../../atoms/Button';
 
 export const Farm: FC = () => {
-  const { openModal } = useModalContext();
+  const { openModal, setModalContent } = useModalContext();
+
+  const handleVisibilityModal = useCallback(() => {
+    setModalContent(<FarmForm />);
+    openModal();
+  }, [setModalContent, openModal]);
 
   return (
     <FarmContainer>
-      <AddNewFarmButton onClick={openModal} variant="contained" size="small">
+      <Button onClick={handleVisibilityModal} variant="contained" size="small">
         <Add />
         Novo cadastro
-      </AddNewFarmButton>
+      </Button>
       <Divider flexItem />
       <FarmList />
     </FarmContainer>

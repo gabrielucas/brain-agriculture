@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import { styled } from 'styled-components';
 
 const FarmContainer = styled.div`
@@ -9,19 +8,7 @@ const FarmContainer = styled.div`
   padding: 1rem;
   border-radius: 8px;
 
-  background: ${({ theme }) => theme['--amber']};
+  background: ${({ theme }) => theme['--white']};
 `;
 
-const AddNewFarmButton = styled(Button)`
-  text-transform: initial;
-  font-weight: 700;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  background: ${({ theme }) => theme['--green-700']};
-
-  &:hover {
-    background: ${({ theme }) => theme['--green-800']};
-  }
-`;
-
-export { AddNewFarmButton, FarmContainer };
+export { FarmContainer };

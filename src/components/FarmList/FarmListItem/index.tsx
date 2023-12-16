@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
 import { Button } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 
-export const FarmListItem: FC = () => {
+const ListItem: FC = () => {
   return (
     <ListItemContainer>
       <ListItemContent>
@@ -24,3 +24,5 @@ export const FarmListItem: FC = () => {
     </ListItemContainer>
   );
 };
+
+export const FarmListItem = memo(ListItem);

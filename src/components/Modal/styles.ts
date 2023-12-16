@@ -13,6 +13,8 @@ const ModalWrapper = styled(Modal)`
 const ModalBox = styled(Box)<ModalBoxConfigProps>`
   min-width: 50vw;
   width: ${({ width }) => (width ? width : 'auto')};
+
+  max-height: 96vh;
   height: ${({ height }) => (height ? height : 'auto')};
 
   padding: 1rem;
@@ -23,6 +25,11 @@ const ModalBox = styled(Box)<ModalBoxConfigProps>`
   border-radius: 8px;
 
   outline: none;
+  overflow-y: auto;
+
+  @media (max-width: ${({ theme }) => theme['--md']}) {
+    width: calc(100vw - 32px);
+  }
 `;
 
 const ModalHeader = styled.header`
@@ -37,8 +44,8 @@ const ModalHeader = styled.header`
   }
 `;
 
-const ModalContent = styled.div`
+const ModalContentBox = styled.div`
   width: 100%;
 `;
 
-export { ModalBox, ModalContent, ModalHeader, ModalWrapper };
+export { ModalBox, ModalContentBox, ModalHeader, ModalWrapper };

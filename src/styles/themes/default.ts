@@ -28,4 +28,8 @@ export const defaulTheme = {
 
   '--amber': '#fffbeb',
   '--white': '#fff',
+
+  '--md': '768px',
+  '--lg': '1024px',
+  '--xl': '1280px',
 };

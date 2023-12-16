@@ -8,7 +8,7 @@ interface IModalConfig {
 
 interface IModalContext {
   open: boolean;
-  openModal(): void;
+  openModal(newConfig?: IModalConfig): void;
   closeModal(): void;
   ModalContent: ReactNode;
   setModalContent(content: ReactElement): void;

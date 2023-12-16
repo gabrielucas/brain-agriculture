@@ -9,7 +9,7 @@ export const ModalProvider: FC<IModalProps> = ({ children }) => {
   const [ModalContent, setModalContent] = useState<ReactNode>(<div />);
 
   const openModal = (newConfig?: IModalConfig) => {
-    if (modalConfig) setModalConfig((modalConfig) => ({ ...modalConfig, newConfig }));
+    if (newConfig) setModalConfig((modalConfig) => ({ ...modalConfig, ...newConfig }));
     setIsOpen(true);
   };
 
