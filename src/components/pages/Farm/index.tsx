@@ -4,6 +4,7 @@ import { AddNewFarmButton, FarmContainer } from './styles';
 import { Add } from '@mui/icons-material';
 import { Divider } from '@mui/material';
 import { useModalContext } from '../../Modal/context/useModalContext';
+import { FarmList } from '../../FarmList';
 
 export const Farm: FC = () => {
   const { openModal } = useModalContext();
@@ -14,7 +15,8 @@ export const Farm: FC = () => {
         <Add />
         Novo cadastro
       </AddNewFarmButton>
-      <Divider variant="fullWidth" />
+      <Divider flexItem />
+      <FarmList />
     </FarmContainer>
   );
 };

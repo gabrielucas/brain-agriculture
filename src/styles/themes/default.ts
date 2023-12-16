@@ -17,7 +17,7 @@ export const defaulTheme = {
   '--green-800': '#166534',
   '--green-900': '#14532d',
 
-  '--danger': '#e25858',
+  '--danger': '#b91c1c',
 
   '--blue': '#4ea8de',
   '--blue-dark': '#1e6f9f',
@@ -27,4 +27,5 @@ export const defaulTheme = {
   '--purple-dark': '#5e60ce',
 
   '--amber': '#fffbeb',
+  '--white': '#fff',
 };
