@@ -1,44 +1,21 @@
-import { ForwardRefRenderFunction, forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
-import { Select as MuiSelect, SelectChangeEvent, SelectProps } from '@mui/material';
+import { Select as MuiSelect, SelectProps } from '@mui/material';
 
-import { ISelectHandles } from './interfaces/ISelectHandles';
+export const Select: FC<SelectProps> = ({ name = '', ...rest }, ref) => {
+  const inputRef = useRef<HTMLInputElement>(null);
 
-const SelectComponent: ForwardRefRenderFunction<ISelectHandles, SelectProps> = ({ name = '', ...rest }, ref) => {
-  const { defaultValue, error, fieldName, registerField, clearError } = useField(name);
-
-  const [selectedOption, setSelectedOption] = useState<string | number>('');
-
-  const selectChange = (event: SelectChangeEvent) => setSelectedOption(event.target.value);
-
-  useImperativeHandle(
-    ref,
-    () => {
-      return { selectChange };
-    },
-    [],
-  );
+  const { defaultValue = '', error, fieldName, registerField, clearError } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref,
+      ref: inputRef,
       clearValue: (ref) => (ref.current.value = ''),
-      getValue: () => String(selectedOption),
-      setValue: (__ref, newValue) => setSelectedOption(newValue),
+      getValue: (ref) => ref.current.value,
+      setValue: (ref, newValue) => (ref.current.value = newValue),
     });
-  }, [fieldName, ref, registerField, selectedOption]);
+  }, [fieldName, ref, registerField]);
 
-  return (
-    <MuiSelect
-      {...rest}
-      ref={ref}
-      defaultValue={defaultValue}
-      error={!!error}
-      onFocus={clearError}
-      value={selectedOption}
-    />
-  );
+  return <MuiSelect {...rest} defaultValue={defaultValue} inputRef={inputRef} error={!!error} onFocus={clearError} />;
 };
-
-export const Select = forwardRef(SelectComponent);

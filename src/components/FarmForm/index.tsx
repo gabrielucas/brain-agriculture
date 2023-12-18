@@ -14,6 +14,7 @@ import { IFarmData } from '../../contexts/useFarmContext/interfaces/IFarmData';
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
 import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
 import { useModalContext } from '../Modal/context/useModalContext';
+import { INITIAL_FARM_FORM_DATA } from './constants';
 
 export const FarmForm: FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -28,7 +29,7 @@ export const FarmForm: FC = () => {
 
   const handleSubmit: SubmitHandler<IFarmData> = (data) => {
     setFarmsData((currentFarms) => [...currentFarms, { ...data, id: uuid(), crops: selectedCrops }]);
-    formRef.current?.reset();
+    formRef.current?.reset(INITIAL_FARM_FORM_DATA);
     closeModal();
   };
 

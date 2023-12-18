@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import { Select } from '../../atoms/Forms/Select';
 import { FormControl, InputLabel, MenuItem, SelectChangeEvent } from '@mui/material';
@@ -7,7 +7,6 @@ import { FormFieldsBaseContainer } from '../../FarmForm/styles';
 
 import { IState } from '../../../data/@types/interfaces/IState';
 import { ICity } from '../../../data/@types/interfaces/ICity';
-import { ISelectHandles } from '../../atoms/Forms/Select/interfaces/ISelectHandles';
 
 import { states as statesData } from '../../../data/location/states';
 import { cities as citiesData } from '../../../data/location/cities';
@@ -17,13 +16,6 @@ export const Location: FC = () => {
   const [hasSelectedState, setHasSelectedState] = useState(false);
   const [cities, setCities] = useState<ICity[]>([]);
 
-  const stateRef = useRef<ISelectHandles>(null);
-  const cityRef = useRef<ISelectHandles>(null);
-
-  const handleCitySelection = (event: SelectChangeEvent<unknown>) => {
-    cityRef.current?.selectChange(event);
-  };
-
   const filterCities = useCallback((uf: string) => {
     setCities(citiesData);
     setCities((cities) => cities.filter((city) => city.uf === uf));
@@ -31,7 +23,6 @@ export const Location: FC = () => {
 
   const handleStateSelection = useCallback(
     (event: SelectChangeEvent<unknown>) => {
-      stateRef.current?.selectChange(event);
       filterCities(String(event.target.value));
       setHasSelectedState(true);
     },
@@ -44,14 +35,7 @@ export const Location: FC = () => {
     <FormFieldsBaseContainer>
       <FormControl>
         <InputLabel id="state">Selecione o estado</InputLabel>
-        <Select
-          id="state"
-          labelId="state"
-          label="Selecione o estado"
-          name="state"
-          onChange={handleStateSelection}
-          ref={stateRef}
-        >
+        <Select id="state" labelId="state" label="Selecione o estado" name="state" onChange={handleStateSelection}>
           {states.map((state) => {
             return (
               <MenuItem key={state.uf} value={state.uf}>
@@ -64,15 +48,7 @@ export const Location: FC = () => {
 
       <FormControl>
         <InputLabel id="city">Selecione a cidade</InputLabel>
-        <Select
-          disabled={!hasSelectedState}
-          id="city"
-          labelId="city"
-          label="Selecione a cidade"
-          name="city"
-          onChange={handleCitySelection}
-          ref={cityRef}
-        >
+        <Select disabled={!hasSelectedState} id="city" labelId="city" label="Selecione a cidade" name="city">
           {cities.map((city) => {
             return (
               <MenuItem key={city.id} value={city.name}>
