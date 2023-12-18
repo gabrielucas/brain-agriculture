@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, RadioGroup } from '@mui/material';
 import { styled } from 'styled-components';
 
 const FormContainer = styled(Box)`
@@ -34,4 +34,8 @@ const FormAreaContainer = styled(FormFieldsBaseContainer)`
   }
 `;
 
-export { FormAreaContainer, FormContainer, FormFieldsBaseContainer };
+const RadioGroupContainer = styled(RadioGroup)`
+  flex-direction: row;
+`;
+
+export { FormAreaContainer, FormContainer, FormFieldsBaseContainer, RadioGroupContainer };

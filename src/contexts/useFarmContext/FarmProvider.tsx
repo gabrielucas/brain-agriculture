@@ -8,7 +8,7 @@ interface IFarmProviderProps {
 }
 
 export const FarmProvider: FC<IFarmProviderProps> = ({ children }) => {
-  const [farmData, setFarmData] = useState<IFarmData | null>(null);
+  const [farmsData, setFarmsData] = useState<IFarmData[]>([]);
 
-  return <FarmContext.Provider value={{ farmData, setFarmData }}>{children}</FarmContext.Provider>;
+  return <FarmContext.Provider value={{ farmsData, setFarmsData }}>{children}</FarmContext.Provider>;
 };
