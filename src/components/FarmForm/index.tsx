@@ -1,13 +1,14 @@
 import { FC, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { FormControlLabel } from '@mui/material';
 
 import { Button } from '../atoms/Button';
 import { InputText } from '../atoms/Forms/InputText';
 
 import { CropsContainer, CropsFieldsBox, FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
 import { Location } from '../molecules/Location';
+import { Checkbox } from '../atoms/Forms/Checkbox';
 
 export const FarmForm: FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -44,15 +45,18 @@ export const FarmForm: FC = () => {
         <CropsContainer>
           <span>Culturas plantadas:</span>
           <CropsFieldsBox>
-            <FormControlLabel control={<Checkbox size="small" />} label="Soja" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Milho" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Algodão" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Café" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Cana-de-açúcar" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Laranja" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Arroz" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Feijão" />
-            <FormControlLabel control={<Checkbox size="small" />} label="Tomate" />
+            <FormControlLabel control={<Checkbox name="crops[0]" value="soja" size="small" />} label="Soja" />
+            <FormControlLabel control={<Checkbox name="crops[1]" value="milho" size="small" />} label="Milho" />
+            <FormControlLabel control={<Checkbox name="crops[2]" value="algodao" size="small" />} label="Algodão" />
+            <FormControlLabel control={<Checkbox name="crops[3]" value="cafe" size="small" />} label="Café" />
+            <FormControlLabel
+              control={<Checkbox name="crops[4]" value="cana-de-açúcar" size="small" />}
+              label="Cana-de-açúcar"
+            />
+            <FormControlLabel control={<Checkbox name="crops[5]" value="laranja" size="small" />} label="Laranja" />
+            <FormControlLabel control={<Checkbox name="crops[6]" value="arroz" size="small" />} label="Arroz" />
+            <FormControlLabel control={<Checkbox name="crops[7]" value="feijao" size="small" />} label="Feijão" />
+            <FormControlLabel control={<Checkbox name="crops[8]" value="tomate" size="small" />} label="Tomate" />
           </CropsFieldsBox>
         </CropsContainer>
 
