@@ -1,14 +1,15 @@
-import { useRef } from 'react';
+import { FC, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
-import { Checkbox, FormControl, FormControlLabel, InputLabel, Select } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 import { Button } from '../atoms/Button';
 import { InputText } from '../atoms/Forms/InputText';
 
 import { CropsContainer, CropsFieldsBox, FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
+import { Location } from '../molecules/Location';
 
-export const FarmForm = () => {
+export const FarmForm: FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit: SubmitHandler = (data) => {
@@ -33,18 +34,7 @@ export const FarmForm = () => {
 
         <InputText id="document" label="CPF / CNPJ" name="document" type="number" sx={{ flex: '50%' }} />
 
-        <FormFieldsBaseContainer>
-          <FormControl>
-            <InputLabel id="state">Selecione o estado</InputLabel>
-            <Select id="state" labelId="state" label="Selecione o estado" name="state" />
-          </FormControl>
-
-          <FormControl>
-            <InputLabel id="city">Selecione a cidade</InputLabel>
-            <Select id="city" labelId="city" label="Selecione a cidade" name="city" />
-          </FormControl>
-        </FormFieldsBaseContainer>
-
+        <Location />
         <FormAreaContainer>
           <InputText id="arableArea" label="Área agricultável (hectares)" name="arableArea" type="number" />
           <InputText id="vegetationArea" label="Área de vegetação (hectares)" name="vegetationArea" type="number" />

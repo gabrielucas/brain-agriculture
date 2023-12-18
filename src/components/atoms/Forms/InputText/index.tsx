@@ -10,7 +10,7 @@ export type InputTextProps = Omit<TextFieldProps, 'variant'> & {
 
 export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { error, fieldName, registerField, clearError } = useField(name);
+  const { defaultValue, error, fieldName, registerField, clearError } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -18,11 +18,20 @@ export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
       ref: inputRef,
       clearValue: (ref) => (ref.current.value = ''),
       getValue: (ref) => ref.current?.value,
-      setValue: (ref, value: string) => {
+      setValue: (ref, value) => {
         ref.current.value = value;
       },
     });
   }, [fieldName, registerField]);
 
-  return <StyledTextField error={!!error} name={name} onFocus={clearError} ref={inputRef} {...rest} />;
+  return (
+    <StyledTextField
+      defaultValue={defaultValue}
+      error={!!error}
+      name={name}
+      onFocus={clearError}
+      inputRef={inputRef}
+      {...rest}
+    />
+  );
 };
