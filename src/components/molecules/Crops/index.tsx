@@ -1,15 +1,14 @@
 import { ChangeEventHandler, FC, useCallback } from 'react';
+import { FormControlLabel } from '@mui/material';
 
 import { cropsData } from '../../../data/crops';
-import { CropsContainer, CropsFieldsBox } from './styles';
-import { FormControlLabel } from '@mui/material';
 import { Checkbox } from '../../atoms/Forms/Checkbox';
 
-interface ICropsProps {
-  setSelectedCrops: React.Dispatch<React.SetStateAction<string[]>>;
-}
+import { ICropsProps } from './interfaces/ICropsProps';
 
-export const Crops: FC<ICropsProps> = ({ setSelectedCrops }) => {
+import { CropsContainer, CropsFieldsBox } from './styles';
+
+export const Crops: FC<ICropsProps> = ({ setSelectedCrops, farm }) => {
   const removeUnselectedCrop = useCallback(
     (cropName: string) => {
       setSelectedCrops((crops) => crops.filter((crop) => crop !== cropName));
@@ -32,6 +31,13 @@ export const Crops: FC<ICropsProps> = ({ setSelectedCrops }) => {
     [removeUnselectedCrop, setSelectedCrops],
   );
 
+  const handleWithAlreadyPlantedCrops = useCallback(
+    (cropName: string) => {
+      return farm?.crops.includes(cropName);
+    },
+    [farm?.crops],
+  );
+
   return (
     <CropsContainer>
       <span>Culturas plantadas:</span>
@@ -39,7 +45,15 @@ export const Crops: FC<ICropsProps> = ({ setSelectedCrops }) => {
         {cropsData.map((crop, index) => (
           <FormControlLabel
             key={crop.semanticalName}
-            control={<Checkbox name={`crops[${index}]`} value={crop.name} onChange={handleSelectCrops} size="small" />}
+            control={
+              <Checkbox
+                checked={handleWithAlreadyPlantedCrops(crop.name)}
+                name={`crops[${index}]`}
+                value={crop.name}
+                onChange={handleSelectCrops}
+                size="small"
+              />
+            }
             label={crop.name}
           />
         ))}
