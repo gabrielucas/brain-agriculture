@@ -1,6 +1,6 @@
-import { IFarmData } from '../../contexts/useFarmContext/interfaces/IFarmData';
+import { IFarm } from '../../contexts/useFarmContext/interfaces/IFarm';
 
-export const INITIAL_FARM_FORM_DATA: Omit<IFarmData, 'id'> = {
+export const INITIAL_FARM_FORM_DATA: Omit<IFarm, 'id'> = {
   arableArea: Number(''),
   city: '',
   crops: [],

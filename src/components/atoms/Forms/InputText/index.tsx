@@ -10,7 +10,7 @@ export type InputTextProps = Omit<TextFieldProps, 'variant'> & {
 
 export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { defaultValue, error, fieldName, registerField, clearError } = useField(name);
+  const { error, fieldName, registerField, clearError } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -24,14 +24,5 @@ export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return (
-    <StyledTextField
-      defaultValue={defaultValue}
-      error={!!error}
-      name={name}
-      onFocus={clearError}
-      inputRef={inputRef}
-      {...rest}
-    />
-  );
+  return <StyledTextField error={!!error} name={name} onFocus={clearError} inputRef={inputRef} {...rest} />;
 };

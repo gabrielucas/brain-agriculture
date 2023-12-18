@@ -1,6 +1,6 @@
-import { IFarmData } from './IFarmData';
+import { IFarm } from './IFarm';
 
 export interface IFarmContext {
-  farmsData: IFarmData[];
-  setFarmsData: React.Dispatch<React.SetStateAction<IFarmData[]>>;
+  farms: IFarm[];
+  setFarms: React.Dispatch<React.SetStateAction<IFarm[]>>;
 }

@@ -1,6 +1,6 @@
-export interface IFarmData {
+export interface IFarm {
   id: string | number;
-  farm: string;
+  name: string;
   farmer: string;
   document: string;
   city: string;

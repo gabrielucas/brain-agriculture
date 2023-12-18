@@ -1,20 +1,32 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 
-import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
 import { Button } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 
-const ListItem: FC = () => {
+import { IListItemProps } from './interfaces/IListItemProps';
+
+import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
+import { useModalContext } from '../../Modal/context/useModalContext';
+import { FarmForm } from '../../FarmForm';
+
+const ListItem: FC<IListItemProps> = ({ farm }) => {
+  const { openModal, setModalContent } = useModalContext();
+
+  const openFormToEdition = useCallback(() => {
+    setModalContent(<FarmForm farm={farm} />);
+    openModal();
+  }, [farm, openModal, setModalContent]);
+
   return (
     <ListItemContainer>
       <ListItemContent>
-        <strong>Fazenda Dona Inês</strong>
+        <strong>{farm.name}</strong>
         <span>
-          <i>Alceu de Almeida Ferreira</i>
+          <i>{farm.farmer}</i>
         </span>
       </ListItemContent>
       <ListItemActionBox>
-        <Button title="Editar cadastro">
+        <Button onClick={openFormToEdition} title="Editar cadastro">
           <Edit fontSize="small" />
         </Button>
         <Button title="Excluir cadastro">

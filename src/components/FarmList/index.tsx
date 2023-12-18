@@ -1,15 +1,12 @@
 import { FC } from 'react';
 
 import { FarmListItem } from './FarmListItem';
+import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
+
 import { StyledList } from './styles';
 
-interface FarmListProps {}
+export const FarmList: FC = () => {
+  const { farms } = useFarmContext();
 
-export const FarmList: FC<FarmListProps> = () => {
-  return (
-    <StyledList>
-      <FarmListItem />
-      <FarmListItem />
-    </StyledList>
-  );
+  return <StyledList>{farms?.map((farm) => <FarmListItem key={farm.id} farm={farm} />)}</StyledList>;
 };

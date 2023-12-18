@@ -3,14 +3,14 @@ import { CheckboxProps, Checkbox as MuiCheckboxComponent } from '@mui/material';
 import { useField } from '@unform/core';
 
 export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
-  const checkboxRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, registerField } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: checkboxRef,
+      ref: inputRef,
       clearValue: (ref) => (ref.current.checked = false),
       getValue: (ref) => ref.current?.value,
       setValue: (ref) => {
@@ -19,5 +19,5 @@ export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return <MuiCheckboxComponent name={name} inputRef={checkboxRef} {...rest} />;
+  return <MuiCheckboxComponent name={name} inputRef={inputRef} {...rest} />;
 };

@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useCallback, useState } from 'react';
 import { ModalContext } from './ModalContext';
 import { IModalConfig, IModalProps } from './types/interfaces';
 import { INITIAL_MODAL_CONFIG } from './constants';
@@ -13,7 +13,11 @@ export const ModalProvider: FC<IModalProps> = ({ children }) => {
     setIsOpen(true);
   };
 
-  const closeModal = () => setIsOpen(false);
+  const closeModal = useCallback(() => {
+    setIsOpen(false);
+    setModalContent(null);
+    setModalConfig(INITIAL_MODAL_CONFIG);
+  }, []);
 
   return (
     <ModalContext.Provider value={{ open: isOpen, closeModal, openModal, ModalContent, setModalContent, modalConfig }}>

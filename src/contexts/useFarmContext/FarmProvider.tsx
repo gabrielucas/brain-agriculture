@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState } from 'react';
 
-import { IFarmData } from './interfaces/IFarmData';
+import { IFarm } from './interfaces/IFarm';
 import { FarmContext } from './FarmContext';
 
 interface IFarmProviderProps {
@@ -8,7 +8,7 @@ interface IFarmProviderProps {
 }
 
 export const FarmProvider: FC<IFarmProviderProps> = ({ children }) => {
-  const [farmsData, setFarmsData] = useState<IFarmData[]>([]);
+  const [farms, setFarms] = useState<IFarm[]>([]);
 
-  return <FarmContext.Provider value={{ farmsData, setFarmsData }}>{children}</FarmContext.Provider>;
+  return <FarmContext.Provider value={{ farms, setFarms }}>{children}</FarmContext.Provider>;
 };

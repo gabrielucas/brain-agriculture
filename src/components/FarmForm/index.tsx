@@ -9,35 +9,39 @@ import { InputText } from '../atoms/Forms/InputText';
 import { Crops } from '../molecules/Crops';
 import { Document } from '../molecules/Document';
 import { Location } from '../molecules/Location';
-import { IFarmData } from '../../contexts/useFarmContext/interfaces/IFarmData';
+import { IFarm } from '../../contexts/useFarmContext/interfaces/IFarm';
 
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
 import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
 import { useModalContext } from '../Modal/context/useModalContext';
 import { INITIAL_FARM_FORM_DATA } from './constants';
 
-export const FarmForm: FC = () => {
+interface IFarmFormProps {
+  farm?: IFarm;
+}
+
+export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
   const formRef = useRef<FormHandles>(null);
   const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
 
-  const { setFarmsData, farmsData } = useFarmContext();
+  const { setFarms } = useFarmContext();
   const { closeModal } = useModalContext();
 
-  useEffect(() => {
-    console.log(farmsData);
-  }, [farmsData]);
-
-  const handleSubmit: SubmitHandler<IFarmData> = (data) => {
-    setFarmsData((currentFarms) => [...currentFarms, { ...data, id: uuid(), crops: selectedCrops }]);
+  const handleSubmit: SubmitHandler<IFarm> = (data) => {
+    setFarms((farms) => [...farms, { ...data, id: uuid(), crops: selectedCrops }]);
     formRef.current?.reset(INITIAL_FARM_FORM_DATA);
     closeModal();
   };
+
+  useEffect(() => {
+    if (farm) formRef.current?.setData({ ...farm });
+  }, [farm]);
 
   return (
     <Form onSubmit={handleSubmit} ref={formRef} placeholder={null}>
       <FormContainer>
         <FormFieldsBaseContainer>
-          <InputText id="farm" label="Nome da fazenda" name="farm" type="text" />
+          <InputText id="farm" label="Nome da fazenda" name="name" type="text" />
           <InputText id="farmer" label="Produtor" name="farmer" type="text" />
         </FormFieldsBaseContainer>
         <Document />
@@ -48,7 +52,7 @@ export const FarmForm: FC = () => {
           <InputText id="totalArea" label="Área total (hectares)" name="totalArea" type="number" />
         </FormAreaContainer>
 
-        <Crops setSelectedCrops={setSelectedCrops} />
+        <Crops farm={farm} setSelectedCrops={setSelectedCrops} />
 
         <Button type="submit" variant="contained">
           Salvar
