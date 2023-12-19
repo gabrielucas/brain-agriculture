@@ -1,6 +1,5 @@
-import { IFarm } from '../../../../contexts/useFarmContext/interfaces/IFarm';
+import { IFarmFormBaseProps } from '../../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
 
-export interface ICropsProps {
+export interface ICropsProps extends IFarmFormBaseProps {
   setSelectedCrops: React.Dispatch<React.SetStateAction<string[]>>;
-  farm?: IFarm;
 }

@@ -3,24 +3,20 @@ import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { v4 as uuid } from 'uuid';
 
-import { Button } from '../atoms/Button';
-import { InputText } from '../atoms/Forms/InputText';
-
-import { Crops } from '../molecules/Crops';
-import { Document } from '../molecules/Document';
-import { Location } from '../molecules/Location';
-import { useModalContext } from '../../contexts/useModalContext/useModalContext';
-import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
+import { Button } from '../../atoms/Button';
+import { Crops } from '../../molecules/Crops';
+import { Document } from '../../molecules/Document';
+import { Location } from '../../molecules/Location';
+import { InputText } from '../../atoms/Forms/InputText';
+import { useFarmContext, useModalContext } from '../../../contexts';
 
 import { INITIAL_FARM_FORM_DATA } from './constants';
-import { IFarm } from '../../contexts/useFarmContext/interfaces/IFarm';
+import { IFarmFormBaseProps } from './interfaces/IFarmFormBaseProps';
+import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
 
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
-interface IFarmFormProps {
-  farm: IFarm;
-}
 
-export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
+export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const formRef = useRef<FormHandles>(null);
   const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
 

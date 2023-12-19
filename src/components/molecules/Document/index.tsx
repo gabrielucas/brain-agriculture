@@ -1,24 +1,20 @@
-import { ChangeEventHandler, FC, RefObject, useCallback, useMemo, useState } from 'react';
+import { ChangeEventHandler, FC, useCallback, useMemo, useState } from 'react';
 
 import { InputText } from '../../atoms/Forms/InputText';
 import { DocumentType, convertToDocumentFormat } from '../../../helpers/convertToDocumentFormat';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
 import { isValidCNPJ, isValidCPF } from '../../../helpers/validators';
-import { FormHandles } from '@unform/core';
+import { IFarmFormBaseProps } from '../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
 
-interface IDocumentProps {
-  farm: IFarm;
-  formRef: RefObject<FormHandles>;
-}
-
-export const Document: FC<IDocumentProps> = ({ farm, formRef }) => {
+export const Document: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
   const initialDocumentType: DocumentType = useMemo(() => {
-    if (isValidCPF(farm?.document)) return 'CPF';
-    if (isValidCNPJ(farm?.document)) return 'CNPJ';
+    if (farm) {
+      if (isValidCPF(farm.document)) return 'CPF';
+      if (isValidCNPJ(farm.document)) return 'CNPJ';
+    }
 
     return 'CPF';
-  }, [farm?.document]);
+  }, [farm]);
 
   const [documentType, setDocumentType] = useState<DocumentType>(initialDocumentType);
 
@@ -29,7 +25,7 @@ export const Document: FC<IDocumentProps> = ({ farm, formRef }) => {
       } = event;
 
       setDocumentType(selectedDocumentType as DocumentType);
-      formRef.current?.clearField('document');
+      formRef?.current?.clearField('document');
     },
     [formRef],
   );
@@ -45,7 +41,7 @@ export const Document: FC<IDocumentProps> = ({ farm, formRef }) => {
       if (documentType === 'CPF') formattedDocument = convertToDocumentFormat(value, 'CPF');
       if (documentType === 'CNPJ') formattedDocument = convertToDocumentFormat(value, 'CNPJ');
 
-      formRef.current?.setFieldValue('document', String(formattedDocument));
+      formRef?.current?.setFieldValue('document', String(formattedDocument));
     },
     [documentType, formRef],
   );

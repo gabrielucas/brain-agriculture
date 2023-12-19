@@ -13,7 +13,7 @@ export const Farm: FC = () => {
   const { openModal, setModalContent } = useModalContext();
 
   const handleVisibilityModal = useCallback(() => {
-    setModalContent(<FarmForm farm={null} />);
+    setModalContent(<FarmForm />);
     openModal();
   }, [setModalContent, openModal]);
 

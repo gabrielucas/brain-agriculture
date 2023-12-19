@@ -1,9 +1,10 @@
 import { FC, useCallback } from 'react';
-
-import { ModalBox, ModalContentBox, ModalHeader, ModalWrapper } from './styles';
 import { Button } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import { useModalContext } from '../../contexts/useModalContext';
+
+import { useModalContext } from '../../../contexts/';
+
+import { ModalBox, ModalContentBox, ModalHeader, ModalWrapper } from './styles';
 export const Modal: FC = () => {
   const { open, closeModal, modalConfig, ModalContent } = useModalContext();
 
