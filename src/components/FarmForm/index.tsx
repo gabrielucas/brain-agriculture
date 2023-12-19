@@ -9,15 +9,15 @@ import { InputText } from '../atoms/Forms/InputText';
 import { Crops } from '../molecules/Crops';
 import { Document } from '../molecules/Document';
 import { Location } from '../molecules/Location';
+import { useModalContext } from '../Modal/context/useModalContext';
+import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
+
+import { INITIAL_FARM_FORM_DATA } from './constants';
 import { IFarm } from '../../contexts/useFarmContext/interfaces/IFarm';
 
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
-import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
-import { useModalContext } from '../Modal/context/useModalContext';
-import { INITIAL_FARM_FORM_DATA } from './constants';
-
 interface IFarmFormProps {
-  farm?: IFarm;
+  farm: IFarm;
 }
 
 export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
@@ -44,7 +44,7 @@ export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
           <InputText id="farm" label="Nome da fazenda" name="name" type="text" />
           <InputText id="farmer" label="Produtor" name="farmer" type="text" />
         </FormFieldsBaseContainer>
-        <Document />
+        <Document farm={farm} />
         <Location />
         <FormAreaContainer>
           <InputText id="arableArea" label="Área agricultável (hectares)" name="arableArea" type="number" />
@@ -54,9 +54,15 @@ export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
 
         <Crops farm={farm} setSelectedCrops={setSelectedCrops} />
 
-        <Button type="submit" variant="contained">
-          Salvar
-        </Button>
+        {farm ? (
+          <Button type="submit" variant="contained">
+            Atualizar
+          </Button>
+        ) : (
+          <Button type="submit" variant="contained">
+            Salvar
+          </Button>
+        )}
       </FormContainer>
     </Form>
   );

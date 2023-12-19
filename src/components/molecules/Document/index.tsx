@@ -3,12 +3,25 @@ import { ChangeEventHandler, FC, useCallback, useMemo, useState } from 'react';
 import { InputText } from '../../atoms/Forms/InputText';
 import { DocumentType, convertToDocumentFormat } from '../../../helpers/convertToDocumentFormat';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
+import { isValidCNPJ, isValidCPF } from '../../../helpers/validators';
 
-export const Document: FC = () => {
-  const [documentType, setDocumentType] = useState<DocumentType>('CPF');
-  const [documentNumber, setDocumentNumber] = useState('');
+interface IDocumentProps {
+  farm: IFarm;
+}
 
-  const handleDocumentType: ChangeEventHandler<HTMLInputElement> = useCallback((event) => {
+export const Document: FC<IDocumentProps> = ({ farm }) => {
+  const initialDocumentType: DocumentType = useMemo(() => {
+    if (isValidCPF(farm?.document)) return 'CPF';
+    if (isValidCNPJ(farm?.document)) return 'CNPJ';
+
+    return 'CPF';
+  }, [farm]);
+
+  const [documentType, setDocumentType] = useState<DocumentType>(initialDocumentType);
+  const [documentNumber, setDocumentNumber] = useState(farm?.document);
+
+  const handleDocumentTypeChange: ChangeEventHandler<HTMLInputElement> = useCallback((event) => {
     const {
       target: { value: selectedDocumentType },
     } = event;
@@ -17,7 +30,7 @@ export const Document: FC = () => {
     setDocumentNumber('');
   }, []);
 
-  const handleDocumentFormat: ChangeEventHandler<HTMLInputElement> = useCallback(
+  const formatDocumentNumber: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const {
         target: { value },
@@ -40,7 +53,7 @@ export const Document: FC = () => {
 
   return (
     <FormControl>
-      <RadioGroup onChange={handleDocumentType} row value={documentType}>
+      <RadioGroup onChange={handleDocumentTypeChange} row value={documentType}>
         <FormControlLabel control={<Radio />} label="CPF" value="CPF" />
         <FormControlLabel control={<Radio />} label="CNPJ" value="CNPJ" />
       </RadioGroup>
@@ -49,7 +62,7 @@ export const Document: FC = () => {
         inputProps={{ maxLength: charLimit }}
         label="CPF / CNPJ"
         name="document"
-        onChange={handleDocumentFormat}
+        onChange={formatDocumentNumber}
         value={documentNumber}
         type="text"
       />
