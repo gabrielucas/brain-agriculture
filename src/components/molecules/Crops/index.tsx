@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, useCallback } from 'react';
+import { ChangeEventHandler, FC, useCallback, useEffect } from 'react';
 import { FormControlLabel } from '@mui/material';
 
 import { cropsData } from '../../../data/crops';
@@ -8,12 +8,12 @@ import { ICropsProps } from './interfaces/ICropsProps';
 
 import { CropsContainer, CropsFieldsBox } from './styles';
 
-export const Crops: FC<ICropsProps> = ({ setSelectedCrops, farm }) => {
+export const Crops: FC<ICropsProps> = ({ plantedCrops, setPlantedCrops, farm }) => {
   const removeUnselectedCrop = useCallback(
     (cropName: string) => {
-      setSelectedCrops((crops) => crops.filter((crop) => crop !== cropName));
+      setPlantedCrops((crops) => crops.filter((crop) => crop !== cropName));
     },
-    [setSelectedCrops],
+    [setPlantedCrops],
   );
 
   const handleSelectCrops: ChangeEventHandler<HTMLInputElement> = useCallback(
@@ -26,17 +26,22 @@ export const Crops: FC<ICropsProps> = ({ setSelectedCrops, farm }) => {
         return;
       }
 
-      setSelectedCrops((crops) => [...crops, cropName]);
+      setPlantedCrops((crops) => [...crops, cropName]);
     },
-    [removeUnselectedCrop, setSelectedCrops],
+    [removeUnselectedCrop, setPlantedCrops],
   );
 
-  const handleWithAlreadyPlantedCrops = useCallback(
-    (cropName: string) => {
-      return farm?.crops.includes(cropName);
-    },
-    [farm?.crops],
-  );
+  const handleWithPlantedCrops = useCallback(() => {
+    const hasPlantedCrops = farm?.crops.length;
+
+    if (hasPlantedCrops) {
+      setPlantedCrops(farm.crops);
+    }
+  }, [farm?.crops, setPlantedCrops]);
+
+  useEffect(() => {
+    handleWithPlantedCrops();
+  }, [handleWithPlantedCrops]);
 
   return (
     <CropsContainer>
@@ -47,8 +52,8 @@ export const Crops: FC<ICropsProps> = ({ setSelectedCrops, farm }) => {
             key={crop.semanticalName}
             control={
               <Checkbox
-                checked={handleWithAlreadyPlantedCrops(crop.name)}
                 name={`crops[${index}]`}
+                checked={plantedCrops.includes(crop.name)}
                 value={crop.name}
                 onChange={handleSelectCrops}
                 size="small"

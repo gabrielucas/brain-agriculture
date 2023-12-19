@@ -21,7 +21,7 @@ import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './sty
 export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const formRef = useRef<FormHandles>(null);
 
-  const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
+  const [plantedCrops, setPlantedCrops] = useState<string[]>([]);
 
   const { createNewFarm, updateFarm } = useFarmContext();
   const { closeModal } = useModalContext();
@@ -29,12 +29,12 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const handleRegisterOrUpdateFarm = useCallback(
     (newFarmData: IFarm) => {
       farm
-        ? updateFarm({ ...newFarmData, crops: selectedCrops, id: farm.id })
-        : createNewFarm({ ...newFarmData, crops: selectedCrops });
+        ? updateFarm({ ...newFarmData, crops: plantedCrops, id: farm.id })
+        : createNewFarm({ ...newFarmData, crops: plantedCrops });
       formRef.current?.reset(INITIAL_FARM_FORM_DATA);
       closeModal();
     },
-    [closeModal, createNewFarm, farm, selectedCrops, updateFarm],
+    [closeModal, createNewFarm, farm, plantedCrops, updateFarm],
   );
 
   const handleSubmit: SubmitHandler<IFarm> = async (newFarmData) => {
@@ -58,6 +58,10 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
     if (farm) formRef.current?.setData({ ...farm });
   }, [farm]);
 
+  useEffect(() => {
+    console.log(plantedCrops);
+  }, [plantedCrops]);
+
   return (
     <Form initialData={INITIAL_FARM_FORM_DATA} noValidate onSubmit={handleSubmit} ref={formRef} placeholder={null}>
       <FormContainer>
@@ -73,7 +77,7 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
           <InputText id="totalArea" label="Área total (hectares)" name="totalArea" type="number" />
         </FormAreaContainer>
 
-        <Crops farm={farm} setSelectedCrops={setSelectedCrops} />
+        <Crops plantedCrops={plantedCrops} farm={farm} setPlantedCrops={setPlantedCrops} />
 
         {farm ? (
           <Button type="submit" variant="contained">
