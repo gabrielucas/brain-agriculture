@@ -17,5 +17,14 @@ export const Select: FC<SelectProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return <MuiSelect {...rest} error={!!error} inputRef={inputRef} name={name} onFocus={clearError} />;
+  return (
+    <MuiSelect
+      {...rest}
+      error={Boolean(error)}
+      inputRef={inputRef}
+      name={name}
+      onSelect={clearError}
+      onFocus={clearError}
+    />
+  );
 };

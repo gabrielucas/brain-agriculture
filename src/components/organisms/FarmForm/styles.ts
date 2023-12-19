@@ -23,8 +23,8 @@ const FormFieldsBaseContainer = styled(Box)`
   display: flex;
   gap: 0.75rem;
 
-  & > div {
-    flex: 1;
+  & > .MuiFormControl-root {
+    flex: 50%;
   }
 `;
 

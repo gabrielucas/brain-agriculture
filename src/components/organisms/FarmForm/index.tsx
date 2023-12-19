@@ -1,7 +1,7 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
-import { v4 as uuid } from 'uuid';
+import { ValidationError as YupValidationError } from 'yup';
 
 import { Button } from '../../atoms/Button';
 import { Crops } from '../../molecules/Crops';
@@ -14,19 +14,44 @@ import { INITIAL_FARM_FORM_DATA } from './constants';
 import { IFarmFormBaseProps } from './interfaces/IFarmFormBaseProps';
 import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
 
+import { farmSchema } from './formValidations/validationSchema';
+
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
 
 export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const formRef = useRef<FormHandles>(null);
+
   const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
 
-  const { setFarms } = useFarmContext();
+  const { createNewFarm, updateFarm } = useFarmContext();
   const { closeModal } = useModalContext();
 
-  const handleSubmit: SubmitHandler<IFarm> = (data) => {
-    setFarms((farms) => [...farms, { ...data, id: uuid(), crops: selectedCrops }]);
-    formRef.current?.reset(INITIAL_FARM_FORM_DATA);
-    closeModal();
+  const handleRegisterOrUpdateFarm = useCallback(
+    (newFarmData: IFarm) => {
+      farm
+        ? updateFarm({ ...newFarmData, crops: selectedCrops, id: farm.id })
+        : createNewFarm({ ...newFarmData, crops: selectedCrops });
+      formRef.current?.reset(INITIAL_FARM_FORM_DATA);
+      closeModal();
+    },
+    [closeModal, createNewFarm, farm, selectedCrops, updateFarm],
+  );
+
+  const handleSubmit: SubmitHandler<IFarm> = async (newFarmData) => {
+    try {
+      await farmSchema.validate(newFarmData, { abortEarly: false });
+      handleRegisterOrUpdateFarm(newFarmData);
+    } catch (errors) {
+      const validationErrors = {};
+
+      if (errors instanceof YupValidationError) {
+        errors.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+      }
+
+      formRef.current?.setErrors(validationErrors);
+    }
   };
 
   useEffect(() => {
@@ -34,14 +59,14 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   }, [farm]);
 
   return (
-    <Form onSubmit={handleSubmit} ref={formRef} placeholder={null}>
+    <Form initialData={INITIAL_FARM_FORM_DATA} noValidate onSubmit={handleSubmit} ref={formRef} placeholder={null}>
       <FormContainer>
         <FormFieldsBaseContainer>
           <InputText id="farm" label="Nome da fazenda" name="name" type="text" />
           <InputText id="farmer" label="Produtor" name="farmer" type="text" />
         </FormFieldsBaseContainer>
-        <Document formRef={formRef} farm={farm} />
-        <Location farm={farm} />
+        <Document farm={farm} formRef={formRef} />
+        <Location farm={farm} formRef={formRef} />
         <FormAreaContainer>
           <InputText id="arableArea" label="Área agricultável (hectares)" name="arableArea" type="number" />
           <InputText id="vegetationArea" label="Área de vegetação (hectares)" name="vegetationArea" type="number" />

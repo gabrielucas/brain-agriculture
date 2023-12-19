@@ -11,19 +11,12 @@ import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles'
 
 const ListItem: FC<IListItemProps> = ({ farm }) => {
   const { openModal, setModalContent } = useModalContext();
-  const { setFarms } = useFarmContext();
+  const { deleteFarm } = useFarmContext();
 
   const openFormToEdition = useCallback(() => {
     setModalContent(<FarmForm farm={farm} />);
     openModal();
   }, [farm, openModal, setModalContent]);
-
-  const deleteFarm = useCallback(
-    (farmId: string | number) => {
-      setFarms((farms) => farms.filter((farm) => farm.id !== farmId));
-    },
-    [setFarms],
-  );
 
   return (
     <ListItemContainer>

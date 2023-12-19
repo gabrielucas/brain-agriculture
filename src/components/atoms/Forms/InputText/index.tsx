@@ -24,5 +24,14 @@ export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return <StyledTextField error={!!error} name={name} onFocus={clearError} inputRef={inputRef} {...rest} />;
+  return (
+    <StyledTextField
+      error={!!error}
+      helperText={error}
+      name={name}
+      onFocus={clearError}
+      inputRef={inputRef}
+      {...rest}
+    />
+  );
 };

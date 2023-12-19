@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 
 import { Select } from '../../atoms/Forms/Select';
-import { FormControl, InputLabel, MenuItem, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, SelectChangeEvent } from '@mui/material';
 
 import { ICity } from '../../../data/@types/interfaces/ICity';
 import { IState } from '../../../data/@types/interfaces/IState';
@@ -12,7 +12,7 @@ import { cities as citiesData } from '../../../data/location/cities';
 
 import { FormFieldsBaseContainer } from '../../organisms/FarmForm/styles';
 
-export const Location: FC<IFarmFormBaseProps> = ({ farm }) => {
+export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
   const [cities, setCities] = useState<ICity[]>([]);
   const [states] = useState<IState[]>(statesData);
   const [hasSelectedState, setHasSelectedState] = useState(false);
@@ -48,6 +48,7 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm }) => {
       <FormControl>
         <InputLabel id="state">Selecione o estado</InputLabel>
         <Select
+          error={Boolean(formRef?.current?.getFieldError('state'))}
           id="state"
           labelId="state"
           label="Selecione o estado"
@@ -63,6 +64,9 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm }) => {
             );
           })}
         </Select>
+        {formRef?.current?.getFieldError('state') ? (
+          <FormHelperText error={true}>{formRef.current.getFieldError('state')}</FormHelperText>
+        ) : null}
       </FormControl>
 
       <FormControl>
@@ -84,6 +88,9 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm }) => {
             );
           })}
         </Select>
+        {formRef?.current?.getFieldError('city') ? (
+          <FormHelperText error={true}>{formRef.current.getFieldError('city')}</FormHelperText>
+        ) : null}
       </FormControl>
     </FormFieldsBaseContainer>
   );
