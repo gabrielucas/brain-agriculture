@@ -8,14 +8,23 @@ import { IListItemProps } from './interfaces/IListItemProps';
 import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
 import { useModalContext } from '../../Modal/context/useModalContext';
 import { FarmForm } from '../../FarmForm';
+import { useFarmContext } from '../../../contexts/useFarmContext/useFarmContext';
 
 const ListItem: FC<IListItemProps> = ({ farm }) => {
   const { openModal, setModalContent } = useModalContext();
+  const { setFarms } = useFarmContext();
 
   const openFormToEdition = useCallback(() => {
     setModalContent(<FarmForm farm={farm} />);
     openModal();
   }, [farm, openModal, setModalContent]);
+
+  const deleteFarm = useCallback(
+    (farmId: string | number) => {
+      setFarms((farms) => farms.filter((farm) => farm.id !== farmId));
+    },
+    [setFarms],
+  );
 
   return (
     <ListItemContainer>
@@ -29,7 +38,7 @@ const ListItem: FC<IListItemProps> = ({ farm }) => {
         <Button onClick={openFormToEdition} title="Editar cadastro">
           <Edit fontSize="small" />
         </Button>
-        <Button title="Excluir cadastro">
+        <Button onClick={() => deleteFarm(farm.id)} title="Excluir cadastro">
           <Delete fontSize="small" />
         </Button>
       </ListItemActionBox>
