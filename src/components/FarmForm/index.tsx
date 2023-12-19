@@ -9,7 +9,7 @@ import { InputText } from '../atoms/Forms/InputText';
 import { Crops } from '../molecules/Crops';
 import { Document } from '../molecules/Document';
 import { Location } from '../molecules/Location';
-import { useModalContext } from '../Modal/context/useModalContext';
+import { useModalContext } from '../../contexts/useModalContext/useModalContext';
 import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
 
 import { INITIAL_FARM_FORM_DATA } from './constants';

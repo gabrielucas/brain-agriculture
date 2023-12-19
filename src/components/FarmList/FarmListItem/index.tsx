@@ -6,7 +6,7 @@ import { Delete, Edit } from '@mui/icons-material';
 import { IListItemProps } from './interfaces/IListItemProps';
 
 import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
-import { useModalContext } from '../../Modal/context/useModalContext';
+import { useModalContext } from '../../../contexts/useModalContext/useModalContext';
 import { FarmForm } from '../../FarmForm';
 import { useFarmContext } from '../../../contexts/useFarmContext/useFarmContext';
 

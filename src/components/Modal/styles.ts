@@ -1,6 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import { styled } from 'styled-components';
-import { IModalConfig } from './context/types/interfaces';
+import { IModalConfig } from '../../contexts/useModalContext/types/interfaces';
 
 type ModalBoxConfigProps = Omit<IModalConfig, 'isClosableOverlay'>;
 

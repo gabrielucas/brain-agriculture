@@ -6,7 +6,7 @@ import { defaulTheme } from './styles/themes/default';
 import { GlobalStyles } from './styles/global';
 import { Modal } from './components/Modal';
 import { Router } from './routes';
-import { ModalProvider } from './components/Modal/context/ModalProvider';
+import { ModalProvider } from './contexts/useModalContext/ModalProvider';
 import { FarmProvider } from './contexts/useFarmContext/FarmProvider';
 
 const defaultMuiTheme = createTheme();
