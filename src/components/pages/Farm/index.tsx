@@ -7,7 +7,7 @@ import { FarmList } from '../../molecules/FarmList';
 import { FarmForm } from '../../organisms/FarmForm';
 import { useModalContext } from '../../../contexts/useModalContext';
 
-import { FarmContainer } from './styles';
+import { PageContainer } from '../common/styles';
 
 export const Farm: FC = () => {
   const { openModal, setModalContent } = useModalContext();
@@ -18,13 +18,13 @@ export const Farm: FC = () => {
   }, [setModalContent, openModal]);
 
   return (
-    <FarmContainer>
+    <PageContainer>
       <Button onClick={handleVisibilityModal} variant="contained" size="small">
         <Add />
         Novo cadastro
       </Button>
       <Divider flexItem />
       <FarmList />
-    </FarmContainer>
+    </PageContainer>
   );
 };

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const FarmContainer = styled.div`
+const PageContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,4 +11,4 @@ const FarmContainer = styled.div`
   background: ${({ theme }) => theme['--white']};
 `;
 
-export { FarmContainer };
+export { PageContainer };
