@@ -4,7 +4,14 @@ import { styled } from 'styled-components';
 const ListItemContainer = styled(ListItem)`
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  background: ${({ theme }) => theme['--green-600']};
+
+  &:nth-child(odd) {
+    background: ${({ theme }) => theme['--green-600']};
+  }
+
+  &:nth-child(even) {
+    background: ${({ theme }) => theme['--green-500']};
+  }
 
   justify-content: space-between;
   color: ${({ theme }) => theme['--white']};

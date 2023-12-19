@@ -20,7 +20,7 @@ export const Counter: FC = () => {
         <div className="counter">{totalFarms}</div>
       </CounterContainer>
       <CounterContainer>
-        <strong>Área total</strong>
+        <strong>Área total (ha)</strong>
         <div className="counter">{totalAreaOfAllFarms}</div>
       </CounterContainer>
     </CounterBox>

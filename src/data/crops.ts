@@ -2,6 +2,10 @@ import { ICrops } from './@types/interfaces/ICrops';
 
 export const cropsData: ICrops[] = [
   {
+    name: 'Morango',
+    semanticalName: 'morango',
+  },
+  {
     name: 'Soja',
     semanticalName: 'soja',
   },
@@ -36,5 +40,13 @@ export const cropsData: ICrops[] = [
   {
     name: 'Tomate',
     semanticalName: 'tomate',
+  },
+  {
+    name: 'Cenoura',
+    semanticalName: 'cenoura',
+  },
+  {
+    name: 'Cebola',
+    semanticalName: 'cebola',
   },
 ];

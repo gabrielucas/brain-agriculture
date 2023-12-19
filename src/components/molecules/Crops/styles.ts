@@ -13,7 +13,7 @@ const CropsContainer = styled(Box)`
 const CropsFieldsBox = styled(FormGroup)`
   display: grid;
   gap: 0 0.75rem;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
   .Mui-checked {
     color: ${({ theme }) => theme['--green-900']};

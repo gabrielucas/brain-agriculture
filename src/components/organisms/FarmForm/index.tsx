@@ -43,7 +43,11 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const handleSubmit: SubmitHandler<IFarm> = async (newFarmData) => {
     try {
       await farmSchema.validate(
-        { ...newFarmData, documentType: documentComponentRef.current?.documentType },
+        {
+          ...newFarmData,
+          documentType: documentComponentRef.current?.documentType,
+          totalArea: Number(newFarmData.totalArea),
+        },
         { abortEarly: false },
       );
       handleRegisterOrUpdateFarm(newFarmData);
