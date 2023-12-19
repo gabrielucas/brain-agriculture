@@ -26,12 +26,13 @@ export const InputText: FC<InputTextProps> = ({ name = '', ...rest }) => {
 
   return (
     <StyledTextField
+      {...rest}
       error={!!error}
       helperText={error}
       name={name}
       onFocus={clearError}
       inputRef={inputRef}
-      {...rest}
+      size="small"
     />
   );
 };

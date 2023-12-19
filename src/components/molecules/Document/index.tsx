@@ -77,7 +77,7 @@ const DocumentComponent: ForwardRefRenderFunction<IExportDocumentProps, IFarmFor
   );
 
   return (
-    <FormControl>
+    <FormControl size="small">
       <RadioGroup onChange={handleDocumentTypeChange} row value={documentType}>
         <FormControlLabel control={<Radio />} label="CPF" value="CPF" />
         <FormControlLabel control={<Radio />} label="CNPJ" value="CNPJ" />

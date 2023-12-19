@@ -25,6 +25,7 @@ export const Select: FC<SelectProps> = ({ name = '', ...rest }) => {
       name={name}
       onSelect={clearError}
       onFocus={clearError}
+      size="small"
     />
   );
 };

@@ -45,7 +45,7 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
 
   return (
     <FormFieldsBaseContainer>
-      <FormControl>
+      <FormControl size="small">
         <InputLabel id="state">Selecione o estado</InputLabel>
         <Select
           error={Boolean(formRef?.current?.getFieldError('state'))}
@@ -69,7 +69,7 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
         ) : null}
       </FormControl>
 
-      <FormControl>
+      <FormControl size="small">
         <InputLabel id="city">Selecione a cidade</InputLabel>
         <Select
           disabled={!hasSelectedState}

@@ -18,6 +18,19 @@ export const farmSchema = Yup.object().shape({
     })
     .required('Informe o número do documento'),
   arableArea: Yup.string().required('Informe o tamanho da área agricultável.'),
-  totalArea: Yup.string().required('Informe a área total da propriedade.'),
+  totalArea: Yup.string()
+    .when(['arableArea', 'vegetationArea'], {
+      is: (arableArea: number, vegetationArea: number) => arableArea && vegetationArea,
+      then: () =>
+        Yup.number().test(
+          'sumOfArableAndVegetationArea',
+          'A área total é menor que a soma das áreas agricultável e de vegetação.',
+          function (value) {
+            const { arableArea, vegetationArea } = this.parent! ?? {};
+            return Number(value) >= Number(arableArea) + Number(vegetationArea);
+          },
+        ),
+    })
+    .required('Informe a área total da propriedade.'),
   vegetationArea: Yup.string().required('Informe o tamanho da área preservada.'),
 });
