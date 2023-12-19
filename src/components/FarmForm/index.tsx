@@ -44,8 +44,8 @@ export const FarmForm: FC<IFarmFormProps> = ({ farm }) => {
           <InputText id="farm" label="Nome da fazenda" name="name" type="text" />
           <InputText id="farmer" label="Produtor" name="farmer" type="text" />
         </FormFieldsBaseContainer>
-        <Document farm={farm} />
-        <Location />
+        <Document formRef={formRef} farm={farm} />
+        <Location farm={farm} />
         <FormAreaContainer>
           <InputText id="arableArea" label="Área agricultável (hectares)" name="arableArea" type="number" />
           <InputText id="vegetationArea" label="Área de vegetação (hectares)" name="vegetationArea" type="number" />

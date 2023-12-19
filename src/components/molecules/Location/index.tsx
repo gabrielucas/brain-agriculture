@@ -10,32 +10,55 @@ import { ICity } from '../../../data/@types/interfaces/ICity';
 
 import { states as statesData } from '../../../data/location/states';
 import { cities as citiesData } from '../../../data/location/cities';
+import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
 
-export const Location: FC = () => {
-  const [states, setStates] = useState<IState[]>([]);
-  const [hasSelectedState, setHasSelectedState] = useState(false);
+interface ILocationProps {
+  farm: IFarm;
+}
+
+export const Location: FC<ILocationProps> = ({ farm }) => {
   const [cities, setCities] = useState<ICity[]>([]);
+  const [states] = useState<IState[]>(statesData);
+  const [hasSelectedState, setHasSelectedState] = useState(false);
+
+  const [selectedCity, setSelectedCity] = useState(farm?.city || '');
+  const [selectedState, setSelectedState] = useState(farm?.state || '');
 
   const filterCities = useCallback((uf: string) => {
-    setCities(citiesData);
-    setCities((cities) => cities.filter((city) => city.uf === uf));
+    const filteredCities = citiesData.filter((city) => city.uf === uf);
+    setCities(filteredCities);
   }, []);
 
   const handleStateSelection = useCallback(
     (event: SelectChangeEvent<unknown>) => {
-      filterCities(String(event.target.value));
+      const selectedOption = String(event.target.value);
+
       setHasSelectedState(true);
+      setSelectedState(selectedOption);
+      filterCities(selectedOption);
     },
     [filterCities],
   );
 
-  useEffect(() => setStates(statesData), []);
+  useEffect(() => {
+    if (farm?.state) {
+      setHasSelectedState(true);
+      filterCities(farm?.state);
+    }
+  }, [farm, filterCities]);
 
   return (
     <FormFieldsBaseContainer>
       <FormControl>
         <InputLabel id="state">Selecione o estado</InputLabel>
-        <Select id="state" labelId="state" label="Selecione o estado" name="state" onChange={handleStateSelection}>
+        <Select
+          id="state"
+          labelId="state"
+          label="Selecione o estado"
+          name="state"
+          onChange={handleStateSelection}
+          value={selectedState}
+        >
           {states.map((state) => {
             return (
               <MenuItem key={state.uf} value={state.uf}>
@@ -48,7 +71,15 @@ export const Location: FC = () => {
 
       <FormControl>
         <InputLabel id="city">Selecione a cidade</InputLabel>
-        <Select disabled={!hasSelectedState} id="city" labelId="city" label="Selecione a cidade" name="city">
+        <Select
+          disabled={!hasSelectedState}
+          id="city"
+          labelId="city"
+          label="Selecione a cidade"
+          name="city"
+          onChange={(event) => setSelectedCity(String(event.target.value))}
+          value={selectedCity}
+        >
           {cities.map((city) => {
             return (
               <MenuItem key={city.id} value={city.name}>
