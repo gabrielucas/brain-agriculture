@@ -1,18 +1,19 @@
 import { FC, useCallback } from 'react';
+import { Divider } from '@mui/material';
+import { Add } from '@mui/icons-material';
+
+import { Button } from '../../atoms/Button';
+import { FarmList } from '../../molecules/FarmList';
+import { FarmForm } from '../../organisms/FarmForm';
+import { useModalContext } from '../../../contexts/useModalContext';
 
 import { FarmContainer } from './styles';
-import { Add } from '@mui/icons-material';
-import { Divider } from '@mui/material';
-import { useModalContext } from '../../../contexts/useModalContext/useModalContext';
-import { FarmList } from '../../FarmList';
-import { FarmForm } from '../../FarmForm';
-import { Button } from '../../atoms/Button';
 
 export const Farm: FC = () => {
   const { openModal, setModalContent } = useModalContext();
 
   const handleVisibilityModal = useCallback(() => {
-    setModalContent(<FarmForm />);
+    setModalContent(<FarmForm farm={null} />);
     openModal();
   }, [setModalContent, openModal]);
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { FarmListItem } from './FarmListItem';
-import { useFarmContext } from '../../contexts/useFarmContext/useFarmContext';
+import { useFarmContext } from '../../../contexts/useFarmContext';
 
 import { StyledList } from './styles';
 

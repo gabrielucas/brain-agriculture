@@ -3,12 +3,11 @@ import { FC, memo, useCallback } from 'react';
 import { Button } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 
+import { FarmForm } from '../../../organisms/FarmForm';
 import { IListItemProps } from './interfaces/IListItemProps';
+import { useFarmContext, useModalContext } from '../../../../contexts';
 
 import { ListItemContent, ListItemContainer, ListItemActionBox } from './styles';
-import { useModalContext } from '../../../contexts/useModalContext/useModalContext';
-import { FarmForm } from '../../FarmForm';
-import { useFarmContext } from '../../../contexts/useFarmContext/useFarmContext';
 
 const ListItem: FC<IListItemProps> = ({ farm }) => {
   const { openModal, setModalContent } = useModalContext();

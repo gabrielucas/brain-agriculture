@@ -3,14 +3,14 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { Select } from '../../atoms/Forms/Select';
 import { FormControl, InputLabel, MenuItem, SelectChangeEvent } from '@mui/material';
 
-import { FormFieldsBaseContainer } from '../../FarmForm/styles';
-
 import { IState } from '../../../data/@types/interfaces/IState';
 import { ICity } from '../../../data/@types/interfaces/ICity';
 
 import { states as statesData } from '../../../data/location/states';
 import { cities as citiesData } from '../../../data/location/cities';
 import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
+
+import { FormFieldsBaseContainer } from '../../organisms/FarmForm/styles';
 
 interface ILocationProps {
   farm: IFarm;
