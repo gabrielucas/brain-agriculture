@@ -1,12 +1,27 @@
-import { ChangeEventHandler, FC, useCallback, useMemo, useState } from 'react';
+import {
+  ChangeEventHandler,
+  ForwardRefRenderFunction,
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
+import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 import { InputText } from '../../atoms/Forms/InputText';
-import { DocumentType, convertToDocumentFormat } from '../../../helpers/convertToDocumentFormat';
-import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { isValidCNPJ, isValidCPF } from '../../../helpers/validators';
 import { IFarmFormBaseProps } from '../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
+import { DocumentType, convertToDocumentFormat } from '../../../helpers/convertToDocumentFormat';
 
-export const Document: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
+export interface IExportDocumentProps {
+  documentType: DocumentType;
+}
+
+const DocumentComponent: ForwardRefRenderFunction<IExportDocumentProps, IFarmFormBaseProps> = (
+  { farm, formRef },
+  ref,
+) => {
   const initialDocumentType: DocumentType = useMemo(() => {
     if (farm) {
       if (isValidCPF(farm.document)) return 'CPF';
@@ -51,6 +66,16 @@ export const Document: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
     return 14;
   }, [documentType]);
 
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        documentType,
+      };
+    },
+    [documentType],
+  );
+
   return (
     <FormControl>
       <RadioGroup onChange={handleDocumentTypeChange} row value={documentType}>
@@ -68,3 +93,5 @@ export const Document: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
     </FormControl>
   );
 };
+
+export const Document = forwardRef(DocumentComponent);
