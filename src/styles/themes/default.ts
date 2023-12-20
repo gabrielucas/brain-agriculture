@@ -33,3 +33,11 @@ export const defaulTheme = {
   '--lg': '1024px',
   '--xl': '1280px',
 };
+
+export const maximumDeviceSizes = {
+  mobile: 768,
+};
+
+export const devices = {
+  mobile: `(max-width: ${maximumDeviceSizes.mobile}px)`,
+};
