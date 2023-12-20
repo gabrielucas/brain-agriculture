@@ -1,40 +1,19 @@
 import { FC, useMemo } from 'react';
 import { Cell, Pie, Tooltip, Legend } from 'recharts';
-import { PieChartContainer, PieChartTitle, PieRecharts } from './styles';
+
 import { useScreenDimensions } from '../../../utils/useScreenDimensions';
 
-interface IFarmsGroupByState {
-  state: string;
-  total: number;
-}
+import { PieChartContainer, PieChartTitle, PieRecharts } from './styles';
+import { IPieChartProps } from './interfaces/IPieChartProps';
 
 const COLORS = ['#80c0ce', '#467292', '#9adea2', '#c2f69b'];
 
-const farmsGroupedByState: IFarmsGroupByState[] = [
-  {
-    state: 'SP',
-    total: 5,
-  },
-  {
-    state: 'RJ',
-    total: 3,
-  },
-  {
-    state: 'MG',
-    total: 7,
-  },
-  {
-    state: 'MT',
-    total: 10,
-  },
-];
-
-interface IPieChartProps {
-  title: string;
-}
-
-export const PieChart: FC<IPieChartProps> = ({ title }) => {
+export const PieChart: FC<IPieChartProps> = ({ title, data }) => {
   const { isMobile } = useScreenDimensions();
+
+  const handleWithCellOutline = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
+    event.currentTarget.style.outline = 'none';
+  };
 
   const Chart = useMemo(
     () => (
@@ -42,19 +21,19 @@ export const PieChart: FC<IPieChartProps> = ({ title }) => {
         <Pie
           cx="50%"
           cy="50%"
-          data={farmsGroupedByState}
-          dataKey="total"
+          data={data}
+          dataKey="value"
           fill="#8884d8"
           label
-          nameKey="state"
+          nameKey="name"
           outerRadius={isMobile ? 100 : 130}
         >
-          {farmsGroupedByState.map((__entry, index) => (
+          {data.map((__entry, index) => (
             <Cell
               key={`cell-${index + 1}`}
               fill={COLORS[index % COLORS.length]}
-              onMouseOver={(event) => (event.currentTarget.style.outline = 'none')}
-              onClick={(event) => (event.currentTarget.style.outline = 'none')}
+              onMouseOver={handleWithCellOutline}
+              onClick={handleWithCellOutline}
             />
           ))}
         </Pie>
@@ -62,7 +41,7 @@ export const PieChart: FC<IPieChartProps> = ({ title }) => {
         <Legend />
       </PieRecharts>
     ),
-    [isMobile],
+    [data, isMobile],
   );
 
   return (
