@@ -5,7 +5,7 @@ const PageContainer = styled.section`
   flex-direction: column;
   align-items: flex-start;
 
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
 
   background: ${({ theme }) => theme['--white']};

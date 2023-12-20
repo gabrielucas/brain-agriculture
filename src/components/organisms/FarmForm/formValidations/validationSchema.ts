@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { isValidCNPJ, isValidCPF } from '../../../../helpers/validators';
+import { isValidCNPJ, isValidCPF } from '../../../../utils/validators';
 
 export const farmSchema = Yup.object().shape({
   name: Yup.string().required('Informe o nome da fazenda.'),

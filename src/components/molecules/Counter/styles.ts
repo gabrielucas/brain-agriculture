@@ -6,6 +6,7 @@ const CounterBox = styled(Box)`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 1rem;
 
   @media (max-width: ${({ theme }) => theme['--md']}) {
     flex-direction: column;

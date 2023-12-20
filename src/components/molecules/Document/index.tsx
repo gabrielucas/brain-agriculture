@@ -10,9 +10,9 @@ import {
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 import { InputText } from '../../atoms/Forms/InputText';
-import { isValidCNPJ, isValidCPF } from '../../../helpers/validators';
+import { isValidCNPJ, isValidCPF } from '../../../utils/validators';
 import { IFarmFormBaseProps } from '../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
-import { DocumentType, convertToDocumentFormat } from '../../../helpers/convertToDocumentFormat';
+import { DocumentType, convertToDocumentFormat } from '../../../utils/convertToDocumentFormat';
 
 export interface IExportDocumentProps {
   documentType: DocumentType;
