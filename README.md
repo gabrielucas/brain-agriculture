@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# Brain Agriculture Case
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React application and is part of the Brain Agriculture evaluation case.
+Solutions were applied to the problems proposed in the repository challenge - [brain-agriculture](https://github.com/brain-ag/trabalhe-conosco). For this, I used:
 
-Currently, two official plugins are available:
+- Programming logic, observing business rules;
+- Data manipulation and processing;
+- Maintaining application state with the React Context API;
+- Memorizing functions, expensive calculations and components;
+- Form management in React;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Let's start?
 
-## Expanding the ESLint configuration
+To test the application, make sure you have Node.js and Git installed.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Open your terminal and clone the repository to your machine:
+``` 
+git clone https://github.com/gabrielucas/brain-agriculture.git
 ```
+```
+cd brain-agriculture/ && code .
+```
+Run the `yarn` command to install all dependencies.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Starting the application
+
+To start the application, run the command `yarn dev`.
+
+This application was built with Vite. To view it in your browser, go to (http://localhost:5173/). If you want to view the mobile experience, on your phone, run `yarn dev --host` to expose your IP address.
+
+ *Note: remember that you must have your cell phone connected to the same network as your machine for the IP to be visible to your device.*
+
+ On your device, open the browser and access the address (http://your-ip-address:5173).
+
+ **Now it's up to you. Feel free to explore the application's features**
