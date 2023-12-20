@@ -7,6 +7,7 @@ const PieChartContainer = styled(Box)`
   flex-direction: column;
   justify-content: center;
   margin-top: 1.5rem;
+  width: 100%;
 `;
 
 const PieChartTitle = styled.h3`
@@ -22,6 +23,15 @@ const PieChartTitle = styled.h3`
 
 const PieRecharts = styled(PieChart)`
   align-self: center;
+  width: 100%;
+
+  .recharts-legend-item {
+    span {
+      color: ${({ theme }) => theme['--green-700']} !important;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+  }
 `;
 
 export { PieChartContainer, PieChartTitle, PieRecharts };

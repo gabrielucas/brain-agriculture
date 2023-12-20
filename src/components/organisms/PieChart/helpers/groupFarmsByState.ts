@@ -1,8 +1,8 @@
 import { IFarm } from '../../../../contexts/useFarmContext/interfaces/IFarm';
-import { IFarmsGroupByState } from '../interfaces/IFarmsGroupByState';
+import { IFarmsGroupBySpecificData } from '../interfaces/IFarmsGroupBySpecificData';
 
-export const groupFarmsByState = (farms: IFarm[]): IFarmsGroupByState => {
-  const farmsGroupByState: IFarmsGroupByState = {};
+export const groupFarmsByState = (farms: IFarm[]): IFarmsGroupBySpecificData => {
+  const farmsGroupByState: IFarmsGroupBySpecificData = {};
 
   farms.forEach((farm) => {
     const { state } = farm;

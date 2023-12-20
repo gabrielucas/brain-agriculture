@@ -1,14 +1,12 @@
 import { FC, useMemo } from 'react';
-import { Cell, Pie, Tooltip, Legend } from 'recharts';
+import { Cell, Legend, Pie, Tooltip } from 'recharts';
 
+import { IPieChartProps } from './interfaces/IPieChartProps';
 import { useScreenDimensions } from '../../../utils/useScreenDimensions';
 
 import { PieChartContainer, PieChartTitle, PieRecharts } from './styles';
-import { IPieChartProps } from './interfaces/IPieChartProps';
 
-const COLORS = ['#80c0ce', '#467292', '#9adea2', '#c2f69b'];
-
-export const PieChart: FC<IPieChartProps> = ({ title, data }) => {
+export const PieChart: FC<IPieChartProps> = ({ title, data, colorDictionary }) => {
   const { isMobile } = useScreenDimensions();
 
   const handleWithCellOutline = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
@@ -26,22 +24,23 @@ export const PieChart: FC<IPieChartProps> = ({ title, data }) => {
           fill="#8884d8"
           label
           nameKey="name"
-          outerRadius={isMobile ? 100 : 130}
+          outerRadius={isMobile ? 80 : 130}
         >
-          {data.map((__entry, index) => (
+          {data.map(({ name }, index) => (
             <Cell
+              fill={colorDictionary ? colorDictionary[name] : '#8884d8'}
               key={`cell-${index + 1}`}
-              fill={COLORS[index % COLORS.length]}
               onMouseOver={handleWithCellOutline}
               onClick={handleWithCellOutline}
+              stroke=""
             />
           ))}
         </Pie>
         <Tooltip />
-        <Legend />
+        <Legend wrapperStyle={{ color: '#000' }} />
       </PieRecharts>
     ),
-    [data, isMobile],
+    [colorDictionary, data, isMobile],
   );
 
   return (

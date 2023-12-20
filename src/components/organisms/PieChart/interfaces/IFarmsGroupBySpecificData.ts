@@ -1,5 +1,5 @@
 import { IFarm } from '../../../../contexts/useFarmContext/interfaces/IFarm';
 
-export interface IFarmsGroupByState {
+export interface IFarmsGroupBySpecificData {
   [key: string]: IFarm[];
 }
