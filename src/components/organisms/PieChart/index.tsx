@@ -37,7 +37,7 @@ export const PieChart: FC<IPieChartProps> = ({ title, data, colorDictionary }) =
           ))}
         </Pie>
         <Tooltip />
-        <Legend wrapperStyle={{ color: '#000' }} />
+        <Legend />
       </PieRecharts>
     ),
     [colorDictionary, data, isMobile],

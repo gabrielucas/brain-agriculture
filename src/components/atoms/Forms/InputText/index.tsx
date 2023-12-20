@@ -1,10 +1,10 @@
 import { FC, useEffect, useRef } from 'react';
-
-import { TextFieldProps, TextFieldVariants } from '@mui/material';
-import { StyledTextField } from '../styles';
 import { useField } from '@unform/core';
+import { TextFieldProps, TextFieldVariants } from '@mui/material';
 
-export type InputTextProps = Omit<TextFieldProps, 'variant'> & {
+import { StyledTextField } from './styles';
+
+type InputTextProps = Omit<TextFieldProps, 'variant'> & {
   variant?: TextFieldVariants;
 };
 

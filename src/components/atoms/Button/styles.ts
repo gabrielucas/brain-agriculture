@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { styled } from 'styled-components';
 
-export const DefaultStyledButton = styled(Button)`
+export const StylizedDefaultButton = styled(Button)`
   text-transform: initial;
   font-weight: 700;
   gap: 0.5rem;

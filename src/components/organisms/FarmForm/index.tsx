@@ -5,19 +5,19 @@ import { ValidationError as YupValidationError } from 'yup';
 
 import { Button } from '../../atoms/Button';
 import { Crops } from '../../molecules/Crops';
-import { Document, IExportDocumentProps } from '../../molecules/Document';
+import { Document } from '../../molecules/Document';
 import { Location } from '../../molecules/Location';
 import { InputText } from '../../atoms/Forms/InputText';
 import { useFarmContext, useModalContext } from '../../../contexts';
 
 import { INITIAL_FARM_FORM_DATA } from './constants';
-import { IFarmFormBaseProps } from './interfaces/IFarmFormBaseProps';
-import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
-
 import { farmSchema } from './formValidations/validationSchema';
+import { IFarmFormBaseProps } from './interfaces/IFarmFormBaseProps';
+import { useFormErrorValidation } from './hooks/useFormErrorValidation';
+import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
+import { IExportDocumentProps } from '../../molecules/Document/interfaces/IExportDocumentProps';
 
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
-import { useFormErrorValidation } from './hooks/useFormErrorValidation';
 
 export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const formRef = useRef<FormHandles>(null);

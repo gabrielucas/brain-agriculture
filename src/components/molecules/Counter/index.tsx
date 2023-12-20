@@ -1,8 +1,9 @@
 import { FC, useMemo } from 'react';
+import { Divider } from '@mui/material';
 
 import { useFarmContext } from '../../../contexts';
+
 import { CounterBox, CounterContainer } from './styles';
-import { Divider } from '@mui/material';
 
 export const Counter: FC = () => {
   const { farms } = useFarmContext();
@@ -10,7 +11,7 @@ export const Counter: FC = () => {
   const totalFarms = farms.length;
 
   const totalAreaOfAllFarms = useMemo(
-    () => farms.reduce((totalArea, currentFarms) => Number(totalArea) + Number(currentFarms.totalArea), 0),
+    () => farms.reduce((totalArea, currentFarms) => totalArea + currentFarms.totalArea, 0),
     [farms],
   );
 

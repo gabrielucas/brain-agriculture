@@ -1,5 +1,6 @@
-import { ICity } from '../@types/interfaces/ICity';
 import { v4 as uuid } from 'uuid';
+
+import { ICity } from '../@types/interfaces/ICity';
 
 export const cities: ICity[] = [
   { id: uuid(), name: 'Rio Branco', uf: 'AC' },

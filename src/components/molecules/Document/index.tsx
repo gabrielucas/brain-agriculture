@@ -13,10 +13,7 @@ import { InputText } from '../../atoms/Forms/InputText';
 import { isValidCNPJ, isValidCPF } from '../../../utils/validators';
 import { IFarmFormBaseProps } from '../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
 import { DocumentType, convertToDocumentFormat } from '../../../utils/convertToDocumentFormat';
-
-export interface IExportDocumentProps {
-  documentType: DocumentType;
-}
+import { IExportDocumentProps } from './interfaces/IExportDocumentProps';
 
 const DocumentComponent: ForwardRefRenderFunction<IExportDocumentProps, IFarmFormBaseProps> = (
   { farm, formRef },
@@ -68,11 +65,9 @@ const DocumentComponent: ForwardRefRenderFunction<IExportDocumentProps, IFarmFor
 
   useImperativeHandle(
     ref,
-    () => {
-      return {
-        documentType,
-      };
-    },
+    () => ({
+      documentType,
+    }),
     [documentType],
   );
 

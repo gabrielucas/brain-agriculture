@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react';
-import { CheckboxProps, Checkbox as MuiCheckboxComponent } from '@mui/material';
 import { useField } from '@unform/core';
+import { CheckboxProps, Checkbox as MuiCheckboxComponent } from '@mui/material';
 
 export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);

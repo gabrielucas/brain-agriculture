@@ -1,7 +1,9 @@
 import { FC, ReactNode, useCallback, useState } from 'react';
+
 import { ModalContext } from './ModalContext';
-import { IModalConfig, IModalProps } from './types/interfaces';
+
 import { INITIAL_MODAL_CONFIG } from './constants';
+import { IModalConfig, IModalProps } from './types/interfaces';
 
 export const ModalProvider: FC<IModalProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
