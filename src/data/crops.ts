@@ -1,6 +1,6 @@
 import { ICrops } from './@types/interfaces/ICrops';
 
-export const cropsData: ICrops[] = [
+export const mockedCropsData: ICrops[] = [
   {
     name: 'Morango',
     semanticalName: 'morango',

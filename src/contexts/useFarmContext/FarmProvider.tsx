@@ -3,14 +3,14 @@ import { v4 as uuid } from 'uuid';
 
 import { IFarm } from './interfaces/IFarm';
 import { FarmContext } from './FarmContext';
-import { farmsMockedData } from '../../data/farms';
+import { mockedFarmsData } from '../../data/farms';
 
 interface IFarmProviderProps {
   children?: ReactNode;
 }
 
 export const FarmProvider: FC<IFarmProviderProps> = ({ children }) => {
-  const [farms, setFarms] = useState<IFarm[]>(farmsMockedData);
+  const [farms, setFarms] = useState<IFarm[]>(mockedFarmsData);
 
   const createNewFarm = useCallback((newFarm: Omit<IFarm, 'id'>) => {
     setFarms((farms) => [...farms, { ...newFarm, id: uuid() }]);

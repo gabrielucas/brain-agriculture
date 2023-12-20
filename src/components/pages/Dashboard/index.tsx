@@ -28,7 +28,7 @@ export const Dashboard: FC = () => {
           data={totalFarmsNumberByCrop}
           title="Total de fazendas por plantio de cultura"
         />
-        <PieChart colorDictionary={COLORS_TO_LAND_USE_DATA} data={landUseData} title="Uso do solo" />
+        <PieChart colorDictionary={COLORS_TO_LAND_USE_DATA} data={landUseData} title="Uso do solo (ha)" />
       </ChartsContainer>
     </PageContainer>
   );

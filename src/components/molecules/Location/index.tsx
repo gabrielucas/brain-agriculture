@@ -6,21 +6,21 @@ import { ICity } from '../../../data/@types/interfaces/ICity';
 import { IState } from '../../../data/@types/interfaces/IState';
 import { IFarmFormBaseProps } from '../../organisms/FarmForm/interfaces/IFarmFormBaseProps';
 
-import { states as statesData } from '../../../data/location/states';
-import { cities as citiesData } from '../../../data/location/cities';
+import { mockedStatesData } from '../../../data/location/states';
+import { mockedCitiesData } from '../../../data/location/cities';
 
 import { FormFieldsBaseContainer } from '../../organisms/FarmForm/styles';
 
 export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
   const [cities, setCities] = useState<ICity[]>([]);
-  const [states] = useState<IState[]>(statesData);
+  const [states] = useState<IState[]>(mockedStatesData);
   const [hasSelectedState, setHasSelectedState] = useState(false);
 
   const [selectedCity, setSelectedCity] = useState(farm?.city || '');
   const [selectedState, setSelectedState] = useState(farm?.state || '');
 
   const filterCities = useCallback((uf: string) => {
-    const filteredCities = citiesData.filter((city) => city.uf === uf);
+    const filteredCities = mockedCitiesData.filter((city) => city.uf === uf);
     setCities(filteredCities);
   }, []);
 

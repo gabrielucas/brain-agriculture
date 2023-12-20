@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 import { IFarm } from '../contexts/useFarmContext/interfaces/IFarm';
 
-export const farmsMockedData: IFarm[] = [
+export const mockedFarmsData: IFarm[] = [
   {
     arableArea: 1500,
     city: 'São Paulo',
@@ -29,7 +29,7 @@ export const farmsMockedData: IFarm[] = [
   },
   {
     arableArea: 700,
-    city: 'Cuiabá',
+    city: 'Campo Grande',
     crops: ['Morango', 'Cana-de-açúcar', 'Laranja'],
     document: '81.822.063/0001-25',
     farmer: 'Lucas Luan Lima',

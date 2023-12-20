@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FC, useCallback, useEffect } from 'react';
 import { FormControlLabel } from '@mui/material';
 
-import { cropsData } from '../../../data/crops';
+import { mockedCropsData } from '../../../data/crops';
 import { Checkbox } from '../../atoms/Forms/Checkbox';
 
 import { ICropsProps } from './interfaces/ICropsProps';
@@ -47,7 +47,7 @@ export const Crops: FC<ICropsProps> = ({ plantedCrops, setPlantedCrops, farm }) 
     <CropsContainer>
       <span>Culturas plantadas:</span>
       <CropsFieldsBox>
-        {cropsData.map((crop, index) => (
+        {mockedCropsData.map((crop, index) => (
           <FormControlLabel
             key={crop.semanticalName}
             control={

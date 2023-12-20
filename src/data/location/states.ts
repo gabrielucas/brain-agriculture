@@ -1,6 +1,6 @@
 import { IState } from '../@types/interfaces/IState';
 
-export const states: IState[] = [
+export const mockedStatesData: IState[] = [
   { uf: 'AC', name: 'Acre' },
   { uf: 'AL', name: 'Alagoas' },
   { uf: 'AP', name: 'Amapá' },
