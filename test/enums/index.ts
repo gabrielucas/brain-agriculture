@@ -1,3 +1,4 @@
 export enum DataTestId {
-  'DEFAULT-BUTTON' = 'default-button',
+  DEFAULT_BUTTON = 'default-button',
+  CHECKBOX_INPUT = 'checkbox-input',
 }

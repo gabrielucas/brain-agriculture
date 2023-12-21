@@ -9,7 +9,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
-    "eslint-config-prettier"
+    "eslint-config-prettier",
+    "plugin:jest-dom/recommended"
   ],
   "settings": {
     "react": {
@@ -28,9 +29,13 @@
   },
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh"],
+  "plugins": ["react-refresh", "jest-dom"],
   "rules": {
     "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
-    "no-undef": "off"
+    "no-undef": "off",
+    "jest-dom/prefer-checked": "error",
+    "jest-dom/prefer-enabled-disabled": "error",
+    "jest-dom/prefer-required": "error",
+    "jest-dom/prefer-to-have-attribute": "error"
   }
 }

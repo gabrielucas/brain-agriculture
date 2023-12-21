@@ -2,6 +2,8 @@ import { FC, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 import { CheckboxProps, Checkbox as MuiCheckboxComponent } from '@mui/material';
 
+import { DataTestId } from '../../../../../test/enums';
+
 export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -19,5 +21,13 @@ export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return <MuiCheckboxComponent name={name} inputRef={inputRef} {...rest} />;
+  return (
+    <MuiCheckboxComponent
+      data-testid={DataTestId.CHECKBOX_INPUT}
+      name={name}
+      inputRef={inputRef}
+      inputProps={{ type: 'checkbox' }}
+      {...rest}
+    />
+  );
 };
