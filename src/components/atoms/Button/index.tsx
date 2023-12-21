@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ButtonProps } from '@mui/material';
 
-import { DataTestId } from '../../../../test/enums';
+import { DataTestId } from '../../../test/enums';
 
 import { StylizedDefaultButton } from './styles';
 

@@ -12,11 +12,11 @@ import { defaulTheme } from './styles/themes/default';
 
 const defaultMuiTheme = createTheme();
 
-type DefaulProvidersProps = {
+export type MainProviderProps = {
   children?: React.ReactNode;
 };
 
-export const DefaulProviders: FC<DefaulProvidersProps> = ({ children }) => (
+export const MainProvider: FC<MainProviderProps> = ({ children }) => (
   <ThemeProvider theme={defaulTheme}>
     <MuiThemeProvider theme={defaultMuiTheme}>
       <FarmProvider>

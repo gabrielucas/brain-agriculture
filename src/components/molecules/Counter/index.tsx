@@ -4,6 +4,7 @@ import { Divider } from '@mui/material';
 import { useFarmContext } from '../../../contexts';
 
 import { CounterBox, CounterContainer } from './styles';
+import { DataTestId } from '../../../test/enums';
 
 export const Counter: FC = () => {
   const { farms } = useFarmContext();
@@ -17,7 +18,7 @@ export const Counter: FC = () => {
 
   return (
     <>
-      <CounterBox>
+      <CounterBox data-testid={DataTestId.COUNTER_CONTAINER}>
         <CounterContainer>
           <strong>Total de fazendas</strong>
           <div className="counter">{totalFarms}</div>

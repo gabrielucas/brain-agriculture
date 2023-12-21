@@ -1,15 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import { Router } from './routes';
-import { DefaulProviders } from './DefaultProviders';
+import { MainProvider } from './MainProvider';
 
 function App() {
   return (
-    <DefaulProviders>
+    <MainProvider>
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    </DefaulProviders>
+    </MainProvider>
   );
 }
 

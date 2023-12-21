@@ -1,7 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 
 import { Button } from '..';
-import { DataTestId } from '../../../../../test/enums';
+import { DataTestId } from '../../../../test/enums';
 
 describe('Given the <Button /> component', () => {
   describe('When the button is clicked', () => {
