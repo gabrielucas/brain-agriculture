@@ -10,6 +10,7 @@ import { mockedStatesData } from '../../../data/location/states';
 import { mockedCitiesData } from '../../../data/location/cities';
 
 import { FormFieldsBaseContainer } from '../../organisms/FarmForm/styles';
+import { DataTestId } from '../../../test/enums';
 
 export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
   const [cities, setCities] = useState<ICity[]>([]);
@@ -43,10 +44,11 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
   }, [farm, filterCities]);
 
   return (
-    <FormFieldsBaseContainer>
+    <FormFieldsBaseContainer data-testid={DataTestId.LOCATION_CONTAINER}>
       <FormControl size="small">
         <InputLabel id="state">Selecione o estado</InputLabel>
         <Select
+          data-testid={DataTestId.STATE_FIELD}
           error={Boolean(formRef?.current?.getFieldError('state'))}
           id="state"
           labelId="state"
@@ -71,6 +73,7 @@ export const Location: FC<IFarmFormBaseProps> = ({ farm, formRef }) => {
       <FormControl size="small">
         <InputLabel id="city">Selecione a cidade</InputLabel>
         <Select
+          data-testid={DataTestId.CITY_FIELD}
           disabled={!hasSelectedState}
           id="city"
           labelId="city"

@@ -18,6 +18,7 @@ import { IFarm } from '../../../contexts/useFarmContext/interfaces/IFarm';
 import { IExportDocumentProps } from '../../molecules/Document/interfaces/IExportDocumentProps';
 
 import { FormAreaContainer, FormContainer, FormFieldsBaseContainer } from './styles';
+import { DataTestId } from '../../../test/enums';
 
 export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   const formRef = useRef<FormHandles>(null);
@@ -61,10 +62,23 @@ export const FarmForm: FC<IFarmFormBaseProps> = ({ farm = null }) => {
   }, [farm]);
 
   return (
-    <Form initialData={INITIAL_FARM_FORM_DATA} noValidate onSubmit={handleSubmit} ref={formRef} placeholder={null}>
+    <Form
+      data-testid={DataTestId.FARM_FORM_CONTAINER}
+      initialData={INITIAL_FARM_FORM_DATA}
+      noValidate
+      onSubmit={handleSubmit}
+      ref={formRef}
+      placeholder={null}
+    >
       <FormContainer>
         <FormFieldsBaseContainer>
-          <InputText id="farm" label="Nome da fazenda" name="name" type="text" />
+          <InputText
+            data-testid={DataTestId.FARM_NAME_FIELD}
+            id="farm"
+            label="Nome da fazenda"
+            name="name"
+            type="text"
+          />
           <InputText id="farmer" label="Produtor" name="farmer" type="text" />
         </FormFieldsBaseContainer>
 
