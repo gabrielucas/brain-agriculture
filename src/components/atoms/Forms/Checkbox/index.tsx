@@ -21,13 +21,5 @@ export const Checkbox: FC<CheckboxProps> = ({ name = '', ...rest }) => {
     });
   }, [fieldName, registerField]);
 
-  return (
-    <MuiCheckboxComponent
-      data-testid={DataTestId.CHECKBOX_INPUT}
-      name={name}
-      inputRef={inputRef}
-      inputProps={{ type: 'checkbox' }}
-      {...rest}
-    />
-  );
+  return <MuiCheckboxComponent data-testid={DataTestId.CHECKBOX_INPUT} name={name} inputRef={inputRef} {...rest} />;
 };
