@@ -5,11 +5,13 @@ Solutions were applied to the problems proposed in the repository challenge - [b
 
 - Programming logic, observing business rules;
 - Data manipulation and processing;
-- Maintaining application state with the React Context API;
+- Maintaining application state with the [React Context API](https://react.dev/reference/react/useContext);
 - Memorizing functions, expensive calculations and components;
-- Form management in React;
+- Form management in React with [Unform](https://unform-rocketseat.vercel.app/);
+- [React Hooks](https://react.dev/reference/react/hooks);
+- Unit tests with [Jest](https://jestjs.io/).
 
-### Let's start?
+### Let's start? :computer:
 
 To test the application, make sure you have Node.js and Git installed.
 
@@ -22,7 +24,7 @@ cd brain-agriculture/ && code .
 ```
 Run the `yarn` command to install all dependencies.
 
-### Starting the application
+### Starting the application :rocket:
 
 To start the application, run the command `yarn dev`.
 
@@ -31,5 +33,19 @@ This application was built with Vite. To view it in your browser, go to (http://
  *Note: remember that you must have your cell phone connected to the same network as your machine for the IP to be visible to your device.*
 
  On your device, open the browser and access the address (http://your-ip-address:5173).
+
+ ### Testing :test_tube:
+ 
+To run the unit tests, run the command below in your terminal:
+```
+yarn test
+```
+
+If you want to check test coverage, run the command below:
+```
+yarn coverage
+```
+
+---
 
  **Now it's up to you. Feel free to explore the application's features**
