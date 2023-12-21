@@ -7,4 +7,6 @@ export enum DataTestId {
   CITY_FIELD = 'city-field',
   FARM_FORM_CONTAINER = 'farm-form-container',
   FARM_NAME_FIELD = 'farm-name-field',
+  LINK_TO_HOME = 'link-to-home',
+  LINK_TO_DASHBOARD = 'link-to-dashboard',
 }
