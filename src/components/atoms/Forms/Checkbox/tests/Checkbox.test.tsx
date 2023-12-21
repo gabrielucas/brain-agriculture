@@ -1,7 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react';
 
 import { Checkbox } from '..';
-import { DataTestId } from '../../../../../../test/enums';
 
 jest.mock('@unform/core', () => ({
   ...jest.requireActual('@unform/core'),
@@ -14,9 +13,9 @@ jest.mock('@unform/core', () => ({
 describe('Given the <Checkbox /> component', () => {
   describe('When the component is rendered', () => {
     test('Then check if it is displayed on screen', () => {
-      const { getByTestId } = render(<Checkbox name="checkboxName" />);
+      const { getByRole } = render(<Checkbox name="checkboxName" />);
 
-      const CheckboxComponent = getByTestId(DataTestId.CHECKBOX_INPUT);
+      const CheckboxComponent = getByRole('checkbox');
 
       expect(CheckboxComponent).toBeInTheDocument();
     });
