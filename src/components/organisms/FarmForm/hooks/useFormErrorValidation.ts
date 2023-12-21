@@ -10,10 +10,10 @@ interface IUseFormErrorValidationProps {
 export const useFormErrorValidation = ({ formRef }: IUseFormErrorValidationProps) => {
   const handleYupError = useCallback(
     (errors: YupValidationError) => {
-      const validationErrors = {};
+      const validationErrors: { [key: string]: string } = {};
 
       errors.inner.forEach((error) => {
-        validationErrors[error.path] = error.message;
+        if (error.path) validationErrors[error.path] = error.message;
       });
 
       formRef?.current?.setErrors(validationErrors);
