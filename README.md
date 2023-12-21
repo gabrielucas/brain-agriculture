@@ -24,6 +24,8 @@ cd brain-agriculture/ && code .
 ```
 Run the `yarn` command to install all dependencies.
 
+*Note: This project was configured with [yarn](https://yarnpkg.com/), however, if you don't have it installed on your machine, make sure you have [npm](https://www.npmjs.com/) installed and run `npm install` to install all dependencies. To run the application, simply run the `npm run dev` command.*
+
 ### Starting the application :rocket:
 
 To start the application, run the command `yarn dev`.
